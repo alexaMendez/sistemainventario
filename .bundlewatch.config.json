@@ -1,27 +1,27 @@
 {
   "files": [
     {
-      "path": "./dist/css/adminlte.css",
+      "path": "./dist/css/technologysolution.css",
       "maxSize": "43 kB"
     },
     {
-      "path": "./dist/css/adminlte.min.css",
+      "path": "./dist/css/technologysolution.min.css",
       "maxSize": "40.25 kB"
     },
     {
-      "path": "./dist/css/adminlte.rtl.css",
+      "path": "./dist/css/technologysolution.rtl.css",
       "maxSize": "43 kB"
     },
     {
-      "path": "./dist/css/adminlte.rtl.min.css",
+      "path": "./dist/css/technologysolution.rtl.min.css",
       "maxSize": "40.25 kB"
     },
     {
-      "path": "./dist/js/adminlte.js",
+      "path": "./dist/js/technologysolution.js",
       "maxSize": "4.5 kB"
     },
     {
-      "path": "./dist/js/adminlte.min.js",
+      "path": "./dist/js/technologysolution.min.js",
       "maxSize": "3 kB"
     }
   ]

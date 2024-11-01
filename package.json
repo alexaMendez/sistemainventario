@@ -4,7 +4,7 @@
   "version": "4.0.0-beta2",
   "license": "MIT",
   "author": "Colorlib <https://colorlib.com>",
-  "main": "dist/js/adminlte.min.js",
+  "main": "dist/js/technologysolution.min.js",
   "scripts": {
     "dev": "npm-run-all --parallel watch docs-serve",
     "css": "npm-run-all css-compile css-prefix css-rtl css-minify",
@@ -18,7 +18,7 @@
     "js": "npm-run-all js-compile js-minify",
     "js-compile": "rollup --config src/config/rollup.config.js --sourcemap",
     "js-lint": "eslint --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
-    "js-minify": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
+    "js-minify": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/js/technologysolution.js.map,includeSources,url=technologysolution.min.js.map\" --output dist/js/technologysolution.min.js dist/js/technologysolution.js",
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "docs-compile": "astro --config src/config/astro.config.mjs build",
@@ -47,15 +47,15 @@
     "control-panel",
     "dashboard"
   ],
-  "homepage": "https://adminlte.io",
-  "style": "dist/css/adminlte.css",
-  "sass": "src/scss/adminlte.scss",
+  "homepage": "https://technologysolution.io",
+  "style": "dist/css/technologysolution.css",
+  "sass": "src/scss/technologysolution.scss",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ColorlibHQ/AdminLTE.git"
+    "url": "git://github.com/ColorlibHQ/technologysolution.git"
   },
   "bugs": {
-    "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
+    "url": "https://github.com/ColorlibHQ/technologysolution/issues"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.3",

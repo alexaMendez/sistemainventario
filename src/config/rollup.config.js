@@ -3,18 +3,18 @@ const pkg = require('../../package.json')
 
 const year = new Date().getFullYear()
 const banner = `/*!
- * AdminLTE v${pkg.version} (${pkg.homepage})
+ * technologysolution v${pkg.version} (${pkg.homepage})
  * Copyright 2014-${year} ${pkg.author}
- * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
+ * Licensed under MIT ()
  */`
 
 module.exports = {
-  input: 'src/ts/adminlte.ts',
+  input: 'src/ts/technologysolution.ts',
   output: {
-    file: 'dist/js/adminlte.js',
+    file: 'dist/js/technologysolution.js',
     format: 'umd',
     banner,
-    name: 'adminlte'
+    name: 'technologysolution'
   },
   plugins: [typescript()]
 }
