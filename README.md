@@ -12,9 +12,9 @@ Highly customizable and easy to use. Fits many screen resolutions from small mob
 ## Looking for Premium Templates?
 
 technologysolution.ar502.com just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable
-prices. Visit <https://technologysolution.ar502.com/premium> for more information.
+prices. Visit <https://technologysolution.ar502.com> for more information.
 
-!["technologysolution Presentation"](https://technologysolution.ar502.com/3.png"technologysolution Presentation")
+!["technologysolution Presentation"](https://technologysolution.ar502.com"technologysolution Presentation")
 
 **technologysolution** has been carefully coded with clear comments in all of its JS, SCSS and HTML files.
 SCSS has been used to increase code customizability.
@@ -33,7 +33,7 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 ## Contributing
 
 - Highly welcome.
-- For your extra reference check [technologysolution v4 Contribution Guide](https://github.com/ColorlibHQ/technologysolution#contributing)
+- For your extra reference check [https://technologysolution.ar502.com](https://github.com/ColorlibHQ/technologysolution#contributing)
 - First thing first, you should have bit knowledge about NodeJS.
 - Github Knowledge.
 - Install NodeJS LTS version.
@@ -46,8 +46,8 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 ## Sponsorship
 
 Support technologysolution development by becoming a sponsor.
-[Github Sponsors](https://github.com/sponsors/danny007in) or
-[PayPal](https://www.paypal.me/daniel007in)
+[Github Sponsors](https://technologysolution.ar502.com) or
+[PayPal](https://technologysolution.ar502.com)
 
 ## License
 
