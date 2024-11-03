@@ -197,7 +197,7 @@ foreach ($resul_datos as $row) {
                                 <td><label for="tipo">Tipo de Gestion</label></td>
                                 <td><input type="text" id="tipo" name="tipo" class="form-control" value="Devolucion" readonly></td>
                                 <td><label for="fecha">Fecha</label></td>
-                                <td><input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" ></td>
+                                <td><input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly></td>
                                 </tr>
                             </table>
                             <table class="table table-bordered">

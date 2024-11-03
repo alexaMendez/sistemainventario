@@ -115,7 +115,7 @@ $_SESSION['last_activity'] = time();
                                     <td><?php echo htmlspecialchars($compra['nombreproducto']); ?></td>
                                     <td><?php echo htmlspecialchars($compra['cantidad']); ?></td>
                                     <td class="text-end" >
-                                        <a href="editarproducto.php?id=<?php echo $compra['id']; ?>"class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                                        <a href="agregarcompra.php?id=<?php echo $compra['id']; ?>"class="btn btn-primary"><i class="bi bi-bag"></i></a>
                                         <a href="eliminarproducto.php?id=<?php echo $compra['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
