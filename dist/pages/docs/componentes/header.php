@@ -164,14 +164,11 @@ function confirmLogout() {
                                 <li class="nav-item"> <a href="agregarproducto.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Registro de Productos</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="listacategorias.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Administración de Categorías</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="inventario.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Control de Inventario</p>
-                                    </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                                        <p>Historial de Movimientos</p>
                                     </a> </li>
                             </ul>
                         </li>
@@ -182,10 +179,10 @@ function confirmLogout() {
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="listadoproveedores.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Registro de Proveedores</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="comprasproveedor.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Historial de Compras</p>
                                     </a> </li>
                             </ul>
@@ -197,13 +194,13 @@ function confirmLogout() {
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="ventas.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Registro de Ventas</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="ventasporusuario.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Ventas por Usuario</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="comisiones.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Comisiones</p>
                                     </a> </li>
                             </ul>
@@ -221,7 +218,7 @@ function confirmLogout() {
                             </ul>
                         </li>
                         <li class="nav-header">Usuarios</li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-person-badge"></i>
+                        <li class="nav-item"> <a href="listadousuarios.php" class="nav-link"> <i class="nav-icon bi bi-person-badge"></i>
                                 <p>Gestión de Usuarios</p>
                             </a> </li>
                         <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-grip-horizontal"></i>

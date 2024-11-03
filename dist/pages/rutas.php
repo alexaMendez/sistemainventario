@@ -7,5 +7,7 @@ $nombre_paginas = [
     'Listado-de-Compras' => 'Listado de compras',
     'Perfil' => 'Mi Perfil',
     'Productos-agotados' => 'Productos agotados',
+    'Lista-de-categorias' => 'Listado de categorias',
+    'Agregar-nueva-categoria' => 'Agregar nueva categoria',
 ];
 ?>

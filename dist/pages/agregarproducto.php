@@ -21,8 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombreproducto = $_POST['nombreproducto'];
     $cantidad = $_POST['cantidad'];
     $fecha_registro = $_POST['fecha_registro'];
+    $categoriaproducto = $_POST['categoriaproducto'];
 
-    if (!empty($nombreproducto) && is_numeric($cantidad) && !empty($fecha_registro)) {
+    if (!empty($nombreproducto) && is_numeric($cantidad) && !empty($fecha_registro) && !empty($categoriaproducto)) {
 
         // Verificar si el producto ya existe
         $sql = "SELECT cantidad FROM producto WHERE nombreproducto = :nombreproducto";
@@ -41,13 +42,15 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $sql_update = "UPDATE producto 
                             SET cantidad = :nueva_cantidad, 
-                                fecha_registro = :fecha_registro
+                                fecha_registro = :fecha_registro,
+                                categoriaproducto = :categoriaproducto
                             WHERE nombreproducto = :nombreproducto";
             $stmt_update = $pdo->prepare($sql_update);
 
             $stmt_update->bindParam(':nueva_cantidad', $nueva_cantidad);
             $stmt_update->bindParam(':fecha_registro', $fecha_registro);
             $stmt_update->bindParam(':nombreproducto', $nombreproducto);
+            $stmt_update->bindParam(':categoriaproducto', $categoriaproducto);
 
             if ($stmt_update->execute()) {
                 echo '<script>
@@ -71,12 +74,13 @@ echo '<script>
             }
         } else {
             // Si el producto no existe, insertar uno nuevo
-            $sql_insert = "INSERT INTO producto (nombreproducto, cantidad, fecha_registro) 
-                            VALUES (:nombreproducto, :cantidad, :fecha_registro)";
+            $sql_insert = "INSERT INTO producto (nombreproducto, cantidad, fecha_registro, categoriaproducto) 
+                            VALUES (:nombreproducto, :cantidad, :fecha_registro, :categoriaproducto)";
             $stmt_insert = $pdo->prepare($sql_insert);
             $stmt_insert->bindParam(':nombreproducto', $nombreproducto);
             $stmt_insert->bindParam(':cantidad', $cantidad);
             $stmt_insert->bindParam(':fecha_registro', $fecha_registro);
+            $stmt_insert->bindParam(':categoriaproducto', $categoriaproducto);
 
             if ($stmt_insert->execute()) {
                 echo '<script>
@@ -110,11 +114,9 @@ echo '<script>
     }
 }
 
-$query = "SELECT nombreproveedor FROM proveedores";
-$resul_proveedores = $pdo->query($query);
+$query = "SELECT categoriaproducto FROM categoriaproducto";
+$resul_categoriaproducto = $pdo->query($query);
 
-$query = "SELECT nombreproducto FROM producto";
-$resul_productos = $pdo->query($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,19 +196,36 @@ $resul_productos = $pdo->query($query);
                     </div>
                     <div class="container mt-5">
                         <form method="POST" action="agregarproducto.php">
-                        <div class="form-group">
-                            <label for="nombreproducto">Nombre del producto</label>
-                            <input type="text" id="nombreproducto" name="nombreproducto" class="form-control" required oninput="this.value = this.value.toLowerCase();">
-                        </div>
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" id="cantidad" name="cantidad" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha_registro">Fecha</label>
-                                <input type="date" id="fecha_registro" name="fecha_registro" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Agregar Producto</button>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><label for="fecha_registro">Fecha</label></td>
+                                    <td><input type="date" id="fecha_registro" name="fecha_registro" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly></td>
+                                    <td><label for="categoriaproducto">Categoria</label></td>
+                                    <td>
+                                    <select name="categoriaproducto" id="categoriaproducto" class="form-control" required>
+                                            <option value="">Selecciona una categoria</option>
+                                            <?php while ($row = $resul_categoriaproducto->fetch(PDO::FETCH_ASSOC)): ?>
+                                                <option value="<?php echo htmlspecialchars($row['categoriaproducto']); ?>">
+                                                    <?php echo htmlspecialchars($row['categoriaproducto']); ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><label for="nombreproducto">Nombre del producto</label></td>
+                                    <td><input type="text" id="nombreproducto" name="nombreproducto" class="form-control" required oninput="this.value = this.value.toLowerCase();"></td>
+                                    <td><label for="cantidad">Cantidad</label></td>
+                                    <td><input type="number" id="cantidad" name="cantidad" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                    <button type="submit" class="btn btn-primary mt-3">Agregar Producto</button>
+                                    </td>
+                                </tr>
+                            </table>                    
                         </form>
                     </div>
 
