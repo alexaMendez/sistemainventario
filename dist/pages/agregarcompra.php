@@ -151,59 +151,69 @@ $resul_productos = $pdo->query($query);
                     </div>
                     <div class="container mt-5">
                         <form method="POST" action="agregarcompra.php">
-                            <div class="form-group">
-                                <label for="nombreproveedor">Nombre del proveedor</label>
-                                <select name="nombreproveedor" id="nombreproveedor" class="form-control" required>
-                                    <option value="">Selecciona un proveedor</option>
-                                    <?php while ($row = $resul_proveedores->fetch(PDO::FETCH_ASSOC)): ?>
-                                        <option value="<?php echo htmlspecialchars($row['nombreproveedor']); ?>">
-                                            <?php echo htmlspecialchars($row['nombreproveedor']); ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="nofactura">Número de Factura</label>
-                                <input type="number" id="nofactura" name="nofactura" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha">Fecha</label>
-                                <input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" >
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreproducto">producto</label>
-                                <select name="nombreproducto" id="nombreproducto" class="form-control" required>
-                                    <option value="">Selecciona un producto</option>
-                                    <?php while ($row = $resul_productos->fetch(PDO::FETCH_ASSOC)): ?>
-                                        <option value="<?php echo htmlspecialchars($row['nombreproducto']); ?>">
-                                            <?php echo htmlspecialchars($row['nombreproducto']); ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" id="cantidad" name="cantidad" class="form-control" required oninput="calculartotal()">
-                            </div>
-                            <div class="form-group">
-                                <label for="precio">Precio Unitario</label>
-                                <input type="number" id="precio" name="precio" step="0.01" class="form-control" required oninput="calculartotal()">
-                            </div>
-                            <div class="form-group">
-                                <label for="total">Precio Total</label>
-                                <input type="number" id="total" name="total" step="0.01" class="form-control" readonly>
-                            </div>
-                            <script>
-                                function calculartotal() {
-                                    var cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
-                                    var precio = parseFloat(document.getElementById('precio').value) || 0;
-                                    var total = cantidad * precio;
-                                    document.getElementById('total').value = total.toFixed(2);
-                                }
-                            </script>
-                            <button type="submit" class="btn btn-primary mt-3">Agregar Compra</button>
+                            <table class="table table-bordered">
+                                <tr>
+                                <td><label for="fecha" class="text-center">Fecha</label></td>
+                                <td><input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>"></td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><label for="nombreproveedor">Nombre del proveedor</label></td>
+                                    <td>
+                                        <select name="nombreproveedor" id="nombreproveedor" class="form-control" required>
+                                            <option value="">Selecciona un proveedor</option>
+                                            <?php while ($row = $resul_proveedores->fetch(PDO::FETCH_ASSOC)): ?>
+                                                <option value="<?php echo htmlspecialchars($row['nombreproveedor']); ?>">
+                                                    <?php echo htmlspecialchars($row['nombreproveedor']); ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </td>
+                                    <td><label for="nofactura">Número de Factura</label></td>
+                                    <td><input type="number" id="nofactura" name="nofactura" class="form-control" required></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="nombreproducto">Producto</label></td>
+                                    <td>
+                                        <select name="nombreproducto" id="nombreproducto" class="form-control" required>
+                                            <option value="">Selecciona un producto </option>
+                                            <?php while ($row = $resul_productos->fetch(PDO::FETCH_ASSOC)): ?>
+                                                <option value="<?php echo htmlspecialchars($row['nombreproducto']); ?>">
+                                                    <?php echo htmlspecialchars($row['nombreproducto']); ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </td>
+                                    <td><label for="cantidad">Cantidad</label></td>
+                                    <td><input type="number" id="cantidad" name="cantidad" class="form-control" required oninput="calculartotal()"></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="precio">Precio Unitario</label></td>
+                                    <td><input type="number" id="precio" name="precio" step="0.01" class="form-control" required oninput="calculartotal()"></td>
+                                    <td><label for="total">Precio Total</label></td>
+                                    <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <button type="submit" class="btn btn-primary">Agregar Compra</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
+
+                    <script>
+                        function calculartotal() {
+                            var cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+                            var precio = parseFloat(document.getElementById('precio').value) || 0;
+                            var total = cantidad * precio;
+                            document.getElementById('total').value = total.toFixed(2);
+                        }
+                    </script>
+
 
                     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

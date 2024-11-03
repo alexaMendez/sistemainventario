@@ -108,6 +108,7 @@ $_SESSION['last_activity'] = time();
                     <th>Precio unitario</th>
                     <th>Precio Total</th>
                     <th>Fecha</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -121,6 +122,10 @@ $_SESSION['last_activity'] = time();
                             <td><?php echo htmlspecialchars($compra['precio']); ?></td>
                             <td><?php echo htmlspecialchars($compra['total']); ?></td>
                             <td><?php echo htmlspecialchars($compra['fecha']); ?></td>
+                            <td class="text-end">
+                                <a href="editarproducto.php?id=<?php echo $compra['id']; ?>"class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a href="eliminarproducto.php?id=<?php echo $compra['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');"><i class="bi bi-trash"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -131,23 +136,24 @@ $_SESSION['last_activity'] = time();
             </tbody>
         </table>
 
-        <!-- Formulario para Seleccionar Rango de Fechas -->
         <div class="mt-4">
             <form method="post" action="listadocompras.php">
-                <div class="form-row">
-                    <div class="col">
-                        <label for="fecha_inicio">Fecha Inicio:</label>
-                        <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
-                    </div>
-                    <div class="col">
-                        <label for="fecha_fin">Fecha Fin:</label>
-                        <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Ver más</button>
+                <table class="table table-bordered"> <!-- Clase para estilo de tabla -->
+                    <tr>
+                        <td><label for="fecha_inicio">Fecha Inicio:</label></td>
+                        <td><input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required></td>
+                        <td><label for="fecha_fin">Fecha Fin:</label></td>
+                        <td><input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <button type="submit" class="btn btn-primary">Ver más</button>
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
-    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

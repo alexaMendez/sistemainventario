@@ -133,7 +133,7 @@ function confirmLogout() {
                             </ul>
                         </li>
 
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-box-seam-fill"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-bag"></i>
                                 <p>
                                     Compras
                                     <i class="nav-arrow bi bi-chevron-right"></i>
@@ -175,7 +175,7 @@ function confirmLogout() {
                                     </a> </li>
                             </ul>
                         </li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-tree-fill"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-truck"></i>
                                 <p>
                                 Proveedores
                                     <i class="nav-arrow bi bi-chevron-right"></i>
@@ -190,7 +190,7 @@ function confirmLogout() {
                                     </a> </li>
                             </ul>
                         </li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-cash"></i>
                                 <p>
                                 Ventas
                                     <i class="nav-arrow bi bi-chevron-right"></i>
@@ -221,7 +221,7 @@ function confirmLogout() {
                             </ul>
                         </li>
                         <li class="nav-header">Usuarios</li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-download"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-person-badge"></i>
                                 <p>Gestión de Usuarios</p>
                             </a> </li>
                         <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-grip-horizontal"></i>

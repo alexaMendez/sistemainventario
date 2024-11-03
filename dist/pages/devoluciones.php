@@ -43,36 +43,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $nueva_cantidad = $row['cantidad'] - $cantidad;
             $nuevo_total = $row['total'] - $total;
-            $nuevo_tipo = $tipo;
 
-            $sql_update = "UPDATE compras 
-                            SET cantidad = :nueva_cantidad, 
-                                total = :nuevo_total,
-                                tipo = :nuevo_tipo, 
-                                fecha = :fecha,
-                                razondevolucion = :razondevolucion
-                            WHERE nofactura = :nofactura 
-                            AND nombreproducto = :nombreproducto 
-                            AND nombreproveedor = :nombreproveedor";
-            $stmt_update = $pdo->prepare($sql_update);
-
-            $stmt_update->bindParam(':nueva_cantidad', $nueva_cantidad);
-            $stmt_update->bindParam(':nuevo_total', $nuevo_total);
-            $stmt_update->bindParam(':nuevo_tipo', $nuevo_tipo);
-            $stmt_update->bindParam(':fecha', $fecha);
-            $stmt_update->bindParam(':razondevolucion', $razondevolucion);
-            $stmt_update->bindParam(':nofactura', $nofactura);
-            $stmt_update->bindParam(':nombreproducto', $nombreproducto);
-            $stmt_update->bindParam(':nombreproveedor', $nombreproveedor);
-
-            if ($stmt_update->execute()) {
+            // Verificar si la nueva cantidad es válida
+            if ($nueva_cantidad < 0) {
                 echo '<script>
-                        alert("Producto actualizado exitosamente.");
+                        alert("No hay suficientes productos disponibles para devolver.");
                     </script>';
             } else {
-                echo '<script>
-                        alert("Error al actualizar el producto.");
-                    </script>';
+                $sql_update = "UPDATE compras 
+                                SET cantidad = :nueva_cantidad, 
+                                    total = :nuevo_total,
+                                    tipo = :tipo, 
+                                    fecha = :fecha,
+                                    razondevolucion = :razondevolucion
+                                WHERE nofactura = :nofactura 
+                                AND nombreproducto = :nombreproducto 
+                                AND nombreproveedor = :nombreproveedor";
+                $stmt_update = $pdo->prepare($sql_update);
+
+                $stmt_update->bindParam(':nueva_cantidad', $nueva_cantidad);
+                $stmt_update->bindParam(':nuevo_total', $nuevo_total);
+                $stmt_update->bindParam(':tipo', $tipo);
+                $stmt_update->bindParam(':fecha', $fecha);
+                $stmt_update->bindParam(':razondevolucion', $razondevolucion);
+                $stmt_update->bindParam(':nofactura', $nofactura);
+                $stmt_update->bindParam(':nombreproducto', $nombreproducto);
+                $stmt_update->bindParam(':nombreproveedor', $nombreproveedor);
+
+                if ($stmt_update->execute()) {
+                    echo '<script>
+                            alert("Producto actualizado exitosamente.");
+                        </script>';
+                } else {
+                    echo '<script>
+                            alert("Error al actualizar el producto.");
+                        </script>';
+                }
             }
         } else {
             // Si el producto no existe, muestra mensaje pero no inserta nada
@@ -186,50 +192,73 @@ foreach ($resul_datos as $row) {
                     </div>
                     <div class="container mt-5">
                         <form method="POST" action="devoluciones.php">
-                        <div class="form-group">
-                                <label for="tipo">Tipo de Gestion</label>
-                                <input type="text" id="tipo" name="tipo" class="form-control" value="Devolucion" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha">Fecha</label>
-                                <input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" >
-                            </div>
-                            <div class="form-group">
-                            <label for="nofactura">No. Factura</label>
-                            <select name="nofactura" id="nofactura" class="form-control">
-                                <?php foreach ($nofacturas as $factura): ?>
-                                    <option value="<?php echo $factura; ?>"><?php echo $factura; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                            <label for="nombreproducto">Nombre Producto</label>
-                            <select name="nombreproducto" id="nombreproducto" class="form-control">
-                                <?php foreach ($productos as $producto): ?>
-                                    <option value="<?php echo $producto; ?>"><?php echo $producto; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                            <label for="nombreproveedor">Nombre Proveedor</label>
-                            <select name="nombreproveedor" id="nombreproveedor" class="form-control">
-                                <?php foreach ($proveedores as $proveedor): ?>
-                                    <option value="<?php echo $proveedor; ?>"><?php echo $proveedor; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" id="cantidad" name="cantidad" class="form-control" required oninput="calculartotal()">
-                            </div>
-                            <div class="form-group">
-                                <label for="precio">Precio Unitario</label>
-                                <input type="number" id="precio" name="precio" step="0.01" class="form-control" required oninput="calculartotal()">
-                            </div>
-                            <div class="form-group">
-                                <label for="total">Total devolucion</label>
-                                <input type="number" id="total" name="total" step="0.01" class="form-control" readonly>
-                            </div>
+                            <table class="table table-bordered">
+                                <tr>
+                                <td><label for="tipo">Tipo de Gestion</label></td>
+                                <td><input type="text" id="tipo" name="tipo" class="form-control" value="Devolucion" readonly></td>
+                                <td><label for="fecha">Fecha</label></td>
+                                <td><input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" ></td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><label for="nofactura">No. Factura</label></td>
+                                    <td>
+                                    <select name="nofactura" id="nofactura" class="form-control">
+                                        <?php foreach ($nofacturas as $factura): ?>
+                                            <option value="<?php echo $factura; ?>"><?php echo $factura; ?></option>
+                                            <?php endforeach; ?>
+                                    </select>
+                                    </td>
+                                    <td><label for="nombreproducto">Nombre Producto</label></td>
+                                    <td>
+                                    <select name="nombreproducto" id="nombreproducto" class="form-control">
+                                    <?php foreach ($productos as $producto): ?>
+                                        <option value="<?php echo $producto; ?>"><?php echo $producto; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="nombreproveedor">Nombre Proveedor</label></td>
+                                    <td>
+                                    <select name="nombreproveedor" id="nombreproveedor" class="form-control">
+                                    <?php foreach ($proveedores as $proveedor): ?>
+                                        <option value="<?php echo $proveedor; ?>"><?php echo $proveedor; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    </td>
+                                    <td><label for="cantidad">Cantidad</label></td>
+                                    <td>
+                                    <input type="number" id="cantidad" name="cantidad" class="form-control" required oninput="calculartotal()">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="precio">Precio Unitario</label></td>
+                                    <td><input type="number" id="precio" name="precio" step="0.01" class="form-control" required oninput="calculartotal()"></td>
+                                    <td><label for="total">Total devolucion</label></td>
+                                    <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
+                                    <td>
+                                    <script>
+                                        function calculartotal() {
+                                            var cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+                                            var precio = parseFloat(document.getElementById('precio').value) || 0;
+                                            var total = cantidad * precio;
+                                            document.getElementById('total').value = total.toFixed(2);
+                                        }
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="razondevolucion">Razon de la devolucion</label></td>
+                                    <td colspan="3" class="text-center"><input type="text" id="razondevolucion" name="razondevolucion" step="0.01" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                    <button type="submit" class="btn btn-primary mt-3">Generar Devolucion</button>
+                                    </td>
+                                </tr>
+                            </table>
                             <script>
                                 function calculartotal() {
                                     var cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
@@ -237,12 +266,23 @@ foreach ($resul_datos as $row) {
                                     var total = cantidad * precio;
                                     document.getElementById('total').value = total.toFixed(2);
                                 }
+
+                                function updateAvailableQuantity() {
+                                    
+                                }
+
+                                function validateQuantity() {
+                                    var cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+                                    var producto = document.getElementById('nombreproducto').value;
+                                    var availableQuantity = 0; 
+
+                                    if (cantidad > availableQuantity) {
+                                        alert('No hay suficientes productos disponibles para devolver. Cantidad disponible: ' + availableQuantity);
+                                        return false; 
+                                    }
+                                    return true; 
+                                }
                             </script>
-                            <div class="form-group">
-                                <label for="razondevolucion">Razon de la devolucion</label>
-                                <input type="text" id="razondevolucion" name="razondevolucion" step="0.01" class="form-control">
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Generar Devolucion</button>
                         </form>
                     </div>
 
