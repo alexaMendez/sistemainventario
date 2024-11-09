@@ -167,6 +167,9 @@ function confirmLogout() {
                                 <li class="nav-item"> <a href="listacategorias.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Administración de Categorías</p>
                                     </a> </li>
+                                <li class="nav-item"> <a href="stock.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>STOCK</p>
+                                    </a> </li>
                                 <li class="nav-item"> <a href="inventario.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Control de Inventario</p>
                                     </a> </li>
@@ -202,6 +205,9 @@ function confirmLogout() {
                                     </a> </li>
                                 <li class="nav-item"> <a href="comisiones.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Comisiones</p>
+                                    </a> </li>
+                                <li class="nav-item"> <a href="listacategorias.php" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Devoluciones de ventas</p>
                                     </a> </li>
                             </ul>
                         </li>

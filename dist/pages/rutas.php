@@ -9,5 +9,9 @@ $nombre_paginas = [
     'Productos-agotados' => 'Productos agotados',
     'Lista-de-categorias' => 'Listado de categorias',
     'Agregar-nueva-categoria' => 'Agregar nueva categoria',
+    'Inventario' => 'Inventario',
+    'listado-de-proveedores' => 'Listado de Proveedores',
+    'agregar-proveedor' => 'Agregar nuevo Proveedor',
+    'stock' => 'Stock',
 ];
 ?>

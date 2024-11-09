@@ -205,5 +205,17 @@ while ($row = $result_last_year->fetch_assoc()) {
 $current_year_sales_json = json_encode($current_year_sales);
 $last_year_sales_json = json_encode($last_year_sales);
 
+//total vendido 
+$primerDiaMes = date("Y-m-01");
+$ultimoDiaMes = date("Y-m-t");
+$sql = "SELECT SUM(totalventa) AS total_ventas_mes FROM ventas WHERE fechaventa BETWEEN '$primerDiaMes' AND '$ultimoDiaMes'";
+$resultado = $conn->query($sql);
+
+$totalVentasMes = 0;
+if ($resultado && $fila = $resultado->fetch_assoc()) {
+    $totalVentasMes = $fila['total_ventas_mes'] ?? 0;
+}
+
 $conn->close();
+
 ?>
